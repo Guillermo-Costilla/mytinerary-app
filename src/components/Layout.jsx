@@ -2,7 +2,7 @@
 
 import { Outlet } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
-import Navbar from "./Navbar"
+import Navbar from "./NavBar"
 import Footer from "./Footer"
 import { useLocation } from "react-router-dom"
 
