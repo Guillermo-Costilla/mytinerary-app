@@ -1,5 +1,3 @@
-"use client"
-
 import { Outlet } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import Navbar from "./NavBar"

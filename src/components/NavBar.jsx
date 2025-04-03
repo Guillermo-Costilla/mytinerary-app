@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  // Close mobile menu when route changes
+  // Cierra el menu mobile cuando las rutas cambian
   useEffect(() => {
     setIsOpen(false)
   }, [location.pathname])

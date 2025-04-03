@@ -13,7 +13,7 @@ const useCityStore = create((set, get) => ({
   error: null,
   searchTerm: "",
 
-  // Fetch all cities
+  // Todas las ciudades
   fetchCities: async () => {
     set({ isLoading: true, error: null });
     try {
@@ -32,7 +32,7 @@ const useCityStore = create((set, get) => ({
     }
   },
 
-  // Fetch a single city by ID
+  // Por ID
   fetchCityById: async (id) => {
     set({ isLoading: true, error: null, currentCity: null });
     try {
@@ -47,7 +47,7 @@ const useCityStore = create((set, get) => ({
     }
   },
 
-  // Create a new city (Usando el token almacenado)
+  // Crear nueva ciudad (Usando el token almacenado)
   createCity: async (cityData) => {
     const { token } = useAuthStore.getState(); // Obtiene el token del usuario
 
@@ -82,7 +82,7 @@ const useCityStore = create((set, get) => ({
     }
   },
 
-  // Search cities locally
+  // buscador de ciudades local.
   searchCities: (term) => {
     const { cities } = get();
     set({ searchTerm: term });
@@ -101,7 +101,6 @@ const useCityStore = create((set, get) => ({
     set({ filteredCities: filtered });
   },
 
-  // Reset search
   resetSearch: () => {
     const { cities } = get();
     set({ searchTerm: "", filteredCities: cities });

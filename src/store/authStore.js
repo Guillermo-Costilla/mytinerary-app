@@ -13,7 +13,6 @@ const useAuthStore = create(
       isLoading: false,
       error: null,
 
-      // Login with email and password
       login: async (email, password) => {
         set({ isLoading: true, error: null });
         try {
@@ -35,7 +34,7 @@ const useAuthStore = create(
         }
       },
 
-      // Register new user
+      // Registro nuevo usuario
       register: async (userData) => {
         set({ isLoading: true, error: null });
         try {
@@ -51,7 +50,7 @@ const useAuthStore = create(
         }
       },
 
-      // Google login
+      // Google login - en migración de google.
       googleLogin: async (tokenId) => {
         set({ isLoading: true, error: null });
         try {
@@ -76,7 +75,7 @@ const useAuthStore = create(
         toast.success("Logged out successfully!");
       },
 
-      // Update user profile
+      // actualizar perfil - en desarrollo
       updateProfile: async (userData) => {
         const { user, token } = get();
         if (!user) return;
@@ -99,8 +98,8 @@ const useAuthStore = create(
       },
     }),
     {
-      name: "auth-storage", // name of the item in localStorage
-      partialize: (state) => ({ user: state.user, token: state.token }), // Persist user and token
+      name: "auth-storage",
+      partialize: (state) => ({ user: state.user, token: state.token }),
     }
   )
 );

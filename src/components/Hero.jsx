@@ -1,5 +1,3 @@
-"use client"
-
 import { Link } from "react-router-dom"
 import { MapPin, Search } from "lucide-react"
 import { motion } from "framer-motion"

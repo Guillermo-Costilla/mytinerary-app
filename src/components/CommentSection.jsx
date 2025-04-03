@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThumbsUp, Trash2, Send } from "lucide-react"

@@ -88,8 +88,6 @@ const Home = () => {
           )}
         </div>
       </section>
-
-      {/* Resto del componente sin cambios */}
       <section className="py-12 bg-muted">
         <div className="container mx-auto px-4">
           <motion.h2

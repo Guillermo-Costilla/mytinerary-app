@@ -1,5 +1,3 @@
-"use client"
-
 import { Link } from "react-router-dom"
 import { MapPin, Mail, Phone, Instagram, Twitter, Facebook } from "lucide-react"
 import { useTheme } from "../context/ThemeContext"
@@ -8,7 +6,7 @@ const Footer = () => {
   const { theme } = useTheme()
 
   return (
-    <footer className={`${theme === "dark" ? "bg-gray-900" : "bg-gray-800"} text-white py-8`}>
+    <footer className={`${theme === "dark" ? "bg-green-800" : "bg-green-900"} text-white py-8`}>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
