@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import { MapPin, Clock, ArrowLeft, User, ThumbsUp } from "lucide-react"

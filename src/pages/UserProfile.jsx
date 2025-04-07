@@ -49,16 +49,16 @@ const UserProfile = () => {
                         <p className="text-muted-foreground mt-1">{user?.email}</p>
 
                         <div className="mt-6 text-left">
-                            <h3 className="font-medium mb-2">Información de la cuenta</h3>
+                            <h3 className="font-medium mb-2">Account Information</h3>
                             <ul className="space-y-2 text-sm">
                                 <li className="flex items-center">
                                     <Calendar size={16} className="text-primary mr-2" />
-                                    <span className="text-muted-foreground w-24">Miembro desde:</span>
+                                    <span className="text-muted-foreground w-24">Member since:</span>
                                     <span>{defaultInfo.memberSince}</span>
                                 </li>
                                 <li className="flex items-center">
                                     <span className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 px-2 py-0.5 rounded-full text-xs ml-6">
-                                        Activo
+                                        Online
                                     </span>
                                 </li>
                             </ul>
@@ -131,15 +131,15 @@ const UserProfile = () => {
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                                 <div className="bg-muted p-4 rounded-lg text-center">
                                     <h3 className="text-3xl font-bold text-primary">0</h3>
-                                    <p className="text-muted-foreground">Ciudades Creadas</p>
+                                    <p className="text-muted-foreground">Cities Created</p>
                                 </div>
                                 <div className="bg-muted p-4 rounded-lg text-center">
                                     <h3 className="text-3xl font-bold text-primary">0</h3>
-                                    <p className="text-muted-foreground">Comentarios</p>
+                                    <p className="text-muted-foreground">Feedback</p>
                                 </div>
                                 <div className="bg-muted p-4 rounded-lg text-center">
                                     <h3 className="text-3xl font-bold text-primary">0</h3>
-                                    <p className="text-muted-foreground">Me gusta</p>
+                                    <p className="text-muted-foreground">Likes</p>
                                 </div>
                             </div>
 

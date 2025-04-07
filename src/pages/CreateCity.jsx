@@ -137,7 +137,6 @@ const CreateCity = () => {
               name="image"
               value={formData.image}
               onChange={handleChange}
-              required
               className="input"
               placeholder="https://example.com/image.jpg"
             />
