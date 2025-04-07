@@ -13,23 +13,87 @@ const CommentSection = ({ cityId }) => {
 
     const comments = getComments(cityId) || []
 
+    const avatars = [
+        "https://randomuser.me/api/portraits/men/1.jpg",
+        "https://randomuser.me/api/portraits/women/2.jpg",
+        "https://randomuser.me/api/portraits/men/3.jpg",
+        "https://randomuser.me/api/portraits/women/4.jpg",
+        "https://randomuser.me/api/portraits/men/5.jpg",
+        "https://randomuser.me/api/portraits/women/6.jpg",
+        "https://randomuser.me/api/portraits/men/7.jpg",
+        "https://randomuser.me/api/portraits/women/8.jpg",
+    ]
+
+    // Array of random user names
+    const names = [
+        "Alex Johnson",
+        "Jamie Smith",
+        "Taylor Brown",
+        "Jordan Davis",
+        "Casey Wilson",
+        "Riley Martinez",
+        "Morgan Lee",
+        "Quinn Thompson",
+    ]
+
+    // Agregar después de los arrays de avatars y names
+    const generateConsistentLikes = (text) => {
+        // Usar una función hash simple para generar un número consistente basado en el texto
+        let hash = 0;
+        for (let i = 0; i < text.length; i++) {
+            hash = ((hash << 5) - hash) + text.charCodeAt(i);
+            hash = hash & hash;
+        }
+        // Convertir el hash a un número entre 1 y 100
+        return Math.abs(hash % 100) + 1;
+    };
+
     // Comentarios por defecto
     const defaultComments = [
-        "It is a very nice city to see, enjoy and learn about its history, well organized trip thanks to the City Pass, essential if you want to see and tour almost the entire city.",
-        "I was there a month ago and my experience was very good. The problem was that it is a very expensive city. I knew it was expensive, but I did not imagine it was so expensive. The best thing to do is to take sandwiches and if you want to eat there one day you can, but to eat every day in the city is to leave a salary.",
-        "I really enjoyed my stay there, I was there for 8 days in early July with my two daughters, a friend and her son. The first thing we liked was the hotel, fantastic with the bad reputation of hotels in London, because the Cleveland Esquare very clean, nice and comfortable, with its kitchen in the room that was very practical for breakfast and dinner, the unbeatable location two blocks from several subway and bus stops, next to Hyde Park, a beautiful place. All the parks are very well kept, the museums are mostly free, the markets are fun, especially the Canden Markers, the stores are so nice and different."
+        {
+            text: "It is a very nice city to see, enjoy and learn about its history, well organized trip thanks to the City Pass, essential if you want to see and tour almost the entire city.",
+            name: names[0],
+            avatar: avatars[0],
+            date: new Date(Date.now() - 86400000).toISOString(), // 1 día atrás
+        },
+        {
+            text: "I was there a month ago and my experience was very good. The problem was that it is a very expensive city. I knew it was expensive, but I did not imagine it was so expensive. The best thing to do is to take sandwiches and if you want to eat there one day you can, but to eat every day in the city is to leave a salary.",
+            name: names[1],
+            avatar: avatars[1],
+            date: new Date(Date.now() - 172800000).toISOString(), // 2 días atrás
+        },
+        {
+            text: "I really enjoyed my stay there, I was there for 8 days in early July with my two daughters, a friend and her son. The first thing we liked was the hotel, fantastic with the bad reputation of hotels in London, because the Cleveland Esquare very clean, nice and comfortable, with its kitchen in the room that was very practical for breakfast and dinner, the unbeatable location two blocks from several subway and bus stops, next to Hyde Park, a beautiful place. All the parks are very well kept, the museums are mostly free, the markets are fun, especially the Canden Markers, the stores are so nice and different.",
+            name: names[2],
+            avatar: avatars[2],
+            date: new Date(Date.now() - 259200000).toISOString(), // 3 días atrás
+        }
     ];
 
-    // Usar comentarios por defecto si no hay comentarios
-    const displayedComments = comments.length > 0 ? comments : defaultComments.map((text, index) => ({
-        id: `default-${index}`, // Generar un ID único para cada comentario por defecto
-        text,
-        user: { name: "Default User", avatar: "/placeholder.svg" }, // Información del usuario por defecto
-        date: new Date().toISOString(), // Fecha actual
-        isOwner: false,
-        userLiked: false,
-        likes: 0,
-    }));
+    // Lógica de displayedComments
+    const displayedComments = (() => {
+        const userComments = comments || [];
+        const defaultCommentsFormatted = defaultComments.map((comment, index) => ({
+            id: `default-${index}`,
+            text: comment.text,
+            user: {
+                name: comment.name,
+                avatar: comment.avatar
+            },
+            date: comment.date,
+            isOwner: false,
+            userLiked: false,
+            likes: generateConsistentLikes(comment.text),
+        }));
+
+        // Si no hay comentarios de usuario, mostrar solo los por defecto
+        if (userComments.length === 0) {
+            return defaultCommentsFormatted;
+        }
+
+        // Combina comentarios de usuario con los por defecto
+        return [...userComments, ...defaultCommentsFormatted];
+    })();
 
     const handleSubmit = (e) => {
         e.preventDefault()

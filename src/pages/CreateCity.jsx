@@ -8,6 +8,8 @@ import useAuthStore from "../store/authStore"
 import useCityStore from "../store/cityStore"
 import toast from "react-hot-toast"
 
+const DEFAULT_CITY_IMAGE = "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1244&q=80"
+
 const CreateCity = () => {
   const navigate = useNavigate()
   const { user } = useAuthStore()
@@ -34,11 +36,17 @@ const CreateCity = () => {
     e.preventDefault()
 
     try {
-      const newCity = await createCity(formData, user.token)
+      // Crear una copia del formData
+      const cityData = {
+        ...formData,
+        // Si la imagen está vacía, usar la imagen por defecto
+        image: formData.image.trim() || DEFAULT_CITY_IMAGE
+      }
+
+      const newCity = await createCity(cityData, user.token)
       toast.success("City created successfully!")
       navigate(`/cities/${newCity._id}`)
     } catch (err) {
-      // Error is handled in the store
       console.error(err)
     }
   }
